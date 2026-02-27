@@ -1,3 +1,6 @@
+from flask import Flask
+
+app = Flask(__name__)
 import re
 
 def analyze_code(code):
@@ -117,3 +120,10 @@ int main() {
 """
 
 analyze_code(code_input)
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Backend is live!"
