@@ -120,10 +120,23 @@ int main() {
 """
 
 analyze_code(code_input)
-from flask import Flask
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)  # allows frontend to talk to backend
 
-@app.route("/analyze", methods=["POST"])
+@app.route("/")
 def home():
     return "Backend is live!"
+
+@app.route("/analyze", methods=["POST"])
+def analyze():
+    data = request.json
+    code = data.get("code", "")
+
+    # Dummy response for now
+    return jsonify({
+        "message": "Code received successfully!",
+        "length": len(code)
+    })
